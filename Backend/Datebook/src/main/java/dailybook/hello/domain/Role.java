@@ -1,12 +1,28 @@
 package dailybook.hello.domain;
 
-import org.springframework.security.core.GrantedAuthority;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.NaturalId;
 
-public enum Role implements GrantedAuthority {
-    USER;
+import javax.persistence.*;
 
-    @Override
-    public String getAuthority() {
-        return null;
+@Table(name = "roles")
+@Data
+@NoArgsConstructor
+@Entity
+public class Role {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Enumerated(EnumType.STRING)
+    @NaturalId
+    @Column(length = 60)
+    private RoleName name;
+
+    public Role(RoleName name) {
+        this.name = name;
     }
+
 }
