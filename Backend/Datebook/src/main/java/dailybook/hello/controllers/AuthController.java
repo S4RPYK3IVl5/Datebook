@@ -39,22 +39,22 @@ public class AuthController {
         this.roleRepo = roleRepo;
         this.passwordEncoder = passwordEncoder;
         this.jwtProvider = jwtProvider;
+
     }
 
     @PostMapping("/signup")
-    public ResponseEntity<String> registerUser(@Valid @RequestBody RegForm regForm){
+    public ResponseEntity<String> registerUser(@Valid @RequestBody RegForm regForm) {
 
-        if (userRepo.existsByUsername(regForm.getUsername())){
+        if (userRepo.existsByUsername(regForm.getUsername()))
             return new ResponseEntity<>("Failed -> Username is already exist!", HttpStatus.BAD_REQUEST);
-        }
 
         User user = new User(regForm.getName(), regForm.getUsername(), passwordEncoder.encode(regForm.getPassword()));
 
         Set<String> strRole = regForm.getRole();
         Set<Role> roles = new HashSet<>();
 
-        strRole.forEach(role ->{
-                    switch (role){
+        strRole.forEach(role -> {
+                    switch (role) {
                         default:
                             Role userRole = roleRepo.findByName(RoleName.ROLE_USER)
                                     .orElseThrow(() -> new RuntimeException("Fail! -> Cause: User Role not find."));
@@ -67,10 +67,11 @@ public class AuthController {
         userRepo.save(user);
 
         return ResponseEntity.ok().body("User have been added");
+
     }
 
     @PostMapping("/signin")
-    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginForm loginForm){
+    public ResponseEntity<?> loginUser(@Valid @RequestBody LoginForm loginForm) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(
                         loginForm.getUsername(),

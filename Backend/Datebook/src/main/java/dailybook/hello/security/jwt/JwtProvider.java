@@ -21,7 +21,7 @@ public class JwtProvider {
     @Value("${dailybook.app.jwtExpiration}")
     private int jwtExpiration;
 
-    public String generateJwtToken(Authentication authentication){
+    public String generateJwtToken(Authentication authentication) {
 
         UserPrinciple userPrinciple = (UserPrinciple) authentication.getPrincipal();
 
@@ -33,7 +33,7 @@ public class JwtProvider {
                 .compact();
     }
 
-    public String getUsernameFromJwtToken(String jwt){
+    public String getUsernameFromJwtToken(String jwt) {
         return Jwts.parser()
                 .setSigningKey(jwtSecret)
                 .parseClaimsJws(jwt)
@@ -60,4 +60,5 @@ public class JwtProvider {
 
         return false;
     }
+
 }

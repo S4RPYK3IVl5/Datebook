@@ -22,4 +22,5 @@ public class RegForm {
     private String password;
 
     private Set<String> role;
+
 }

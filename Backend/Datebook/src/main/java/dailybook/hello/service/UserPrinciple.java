@@ -22,7 +22,7 @@ public class UserPrinciple implements UserDetails {
 
     private Collection<? extends GrantedAuthority> authorities;
 
-    public static UserDetails build(User user){
+    public static UserDetails build(User user) {
         List<GrantedAuthority> authorities = user.getRoles().stream()
                 .map(role -> new SimpleGrantedAuthority(role.getName().name()))
                 .collect(Collectors.toList());
@@ -115,4 +115,5 @@ public class UserPrinciple implements UserDetails {
         UserPrinciple user = (UserPrinciple) o;
         return Objects.equals(id, user.id);
     }
+
 }

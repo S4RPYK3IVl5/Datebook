@@ -21,4 +21,5 @@ public class JwtAuthEntryPoint implements AuthenticationEntryPoint {
         logger.error("Unauthorized error. Message -> {}", e.getMessage());
         httpServletResponse.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Error -> Unauthorized");
     }
+
 }
