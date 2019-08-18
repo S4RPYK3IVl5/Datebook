@@ -1,18 +1,20 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AutorizationComponent } from './components/authorisation/authorisation.component';
+import { AuthorisationComponent } from './components/authorisation/authorisation.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    AutorizationComponent
+    AuthorisationComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
