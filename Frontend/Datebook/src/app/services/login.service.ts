@@ -1,15 +1,26 @@
 import { Injectable } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
-import { LoginData } from '../models';
+import { environment } from '../../environments/environment';
+import * as constants from '../constants';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
+  constructor(
+    private readonly http: HttpClient
+  ) {}
 
-  login(body: LoginData) {
+  login(username: string, password: string): Observable<any> {
+    const address = `${environment.apiUrl}/${constants.apiPrefix}/${constants.loginEndpoint}`;
 
+    const body = {
+      username,
+      password
+    };
+
+    return this.http.post(address, body);
   }
-
 }
