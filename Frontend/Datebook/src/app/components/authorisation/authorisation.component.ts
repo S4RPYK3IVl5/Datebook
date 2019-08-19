@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 
-import { LoginService } from '../../services';
+import { LoginService, RegistrationService } from '../../services';
 
 @Component({
   selector: 'app-authorisation',
@@ -14,8 +14,16 @@ export class AuthorisationComponent implements OnInit {
     password: new FormControl('')
   });
 
+  registrationForm = new FormGroup({
+    name: new FormControl(''),
+    username: new FormControl(''),
+    password: new FormControl(''),
+    role: new FormControl('user')
+  })
+
   constructor(
-    private readonly loginService: LoginService
+    private readonly loginService: LoginService,
+    private readonly registrationService: RegistrationService
   ) { }
 
   ngOnInit() {
@@ -26,6 +34,18 @@ export class AuthorisationComponent implements OnInit {
       .subscribe(
         data => {
           console.log('success');
+        },
+        error => {
+          console.log(error);
+        }
+      )
+  }
+
+  registration() {
+    this.registrationService.registration(this.registrationForm.value)
+      .subscribe(
+        data => {
+          console.log('registration complete')
         },
         error => {
           console.log(error);
