@@ -1,3 +1,2 @@
-export const apiPrefix = 'api';
-
-export const loginEndpoint = 'login';
+export const authorisationPrefix = 'auth';
+export const loginEndpoint = 'signin';

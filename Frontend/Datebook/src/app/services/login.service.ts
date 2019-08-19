@@ -14,7 +14,7 @@ export class LoginService {
   ) {}
 
   login(username: string, password: string): Observable<any> {
-    const address = `${environment.apiUrl}/${constants.apiPrefix}/${constants.loginEndpoint}`;
+    const address = `${environment.apiUrl}/${constants.authorisationPrefix}/${constants.loginEndpoint}`;
 
     const body = {
       username,
